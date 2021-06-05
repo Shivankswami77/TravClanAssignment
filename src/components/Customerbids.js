@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PeopleOutlineTwoToneIcon from "@material-ui/icons/PeopleOutlineTwoTone";
 import PageHeader from "./PageHeader";
+import PersonIcon from "@material-ui/icons/Person";
+import { Link } from "react-router-dom";
+import { createBrowserHistory as history } from "history";
+
 import {
   Paper,
   makeStyles,
@@ -28,9 +32,11 @@ const headCells = [
 
   { id: "email", label: "Email Address" },
   { id: "mobile", label: "Phone Number" },
+  { id: "userDetails", label: "User Details" },
 ];
 const Customerbids = () => {
   const classes = useStyles();
+  const [cusData, setCusData] = useState([]);
   const [records, setRecords] = useState([]);
   const [filterFn, setFilterFn] = useState({
     fn: (items) => {
@@ -59,7 +65,10 @@ const Customerbids = () => {
   // };
   const { TblContainer, TblHead, TblPagination, recordsAfterPagingAndSorting } =
     useTable(records, headCells, filterFn);
-
+  const passData = (item) => {
+    setCusData(item);
+    console.log(item, "passData");
+  };
   return (
     <>
       <PageHeader
@@ -79,7 +88,14 @@ const Customerbids = () => {
                 <TableCell>{item.email}</TableCell>
 
                 <TableCell>{item.phone}</TableCell>
-                <TableCell>{item.hasPremium}</TableCell>
+
+                <TableCell>
+                  {
+                    <Link to="/customerdetails">
+                      <PersonIcon onClick={() => passData(item)} />
+                    </Link>
+                  }
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

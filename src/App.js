@@ -7,8 +7,10 @@ import {
   createMuiTheme,
   ThemeProvider,
 } from "@material-ui/core";
+import { createBrowserHistory as history } from "history";
 
 import Home from "./components/Home";
+import CustomerDetails from "./components/CustomerDetails";
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -47,12 +49,17 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Router>
+      <Router history={history}>
         <div className={classes.appMain}>
           <Switch>
             <Route path="/" exact component={Home}></Route>
 
             <Route path="/customerbids" exact component={Customerbids}></Route>
+            <Route
+              path="/customerdetails"
+              exact
+              component={CustomerDetails}
+            ></Route>
           </Switch>
         </div>
       </Router>
