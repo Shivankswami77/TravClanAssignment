@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import axios from "axios";
 import PeopleOutlineTwoToneIcon from "@material-ui/icons/PeopleOutlineTwoTone";
 import PageHeader from "./PageHeader";
@@ -34,6 +34,7 @@ const headCells = [
   { id: "mobile", label: "Phone Number" },
   { id: "userDetails", label: "User Details" },
 ];
+
 const Customerbids = () => {
   const classes = useStyles();
   const [cusData, setCusData] = useState([]);
@@ -67,6 +68,9 @@ const Customerbids = () => {
     useTable(records, headCells, filterFn);
   const passData = (item) => {
     setCusData(item);
+    // localStorage.setItem(item.id, "bids");
+    // window.sessionStorage.setItem(JSON.stringify(item.avatarUrl, "url");
+
     console.log(item, "passData");
   };
   return (

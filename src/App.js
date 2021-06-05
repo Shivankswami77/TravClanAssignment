@@ -7,7 +7,6 @@ import {
   createMuiTheme,
   ThemeProvider,
 } from "@material-ui/core";
-import { createBrowserHistory as history } from "history";
 
 import Home from "./components/Home";
 import CustomerDetails from "./components/CustomerDetails";
@@ -49,7 +48,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Router history={history}>
+      <Router>
         <div className={classes.appMain}>
           <Switch>
             <Route path="/" exact component={Home}></Route>
