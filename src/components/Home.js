@@ -2,6 +2,7 @@ import React from "react";
 import "./Home.css";
 import HomeIcon from "@material-ui/icons/Home";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -11,10 +12,12 @@ const Home = () => {
         <br />
         Submitted By :- Shvank Swami
       </h1>
-      <Button style={{ color: "#6E3E8B" }} variant="contained">
-        <HomeIcon />
-        Sign in
-      </Button>
+      <Link to="/customerbids">
+        <Button style={{ color: "#6E3E8B" }} variant="contained">
+          <HomeIcon />
+          Sign in
+        </Button>
+      </Link>
     </div>
   );
 };
