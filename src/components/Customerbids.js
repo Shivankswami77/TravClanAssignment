@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PeopleOutlineTwoToneIcon from "@material-ui/icons/PeopleOutlineTwoTone";
+import PageHeader from "./PageHeader";
 import {
   Paper,
   makeStyles,
@@ -56,28 +57,36 @@ const Customerbids = () => {
   //   const items = await data.json();
   console.log(records, "items");
   // };
-  const { TblContainer, TblHead } = useTable(records, headCells);
+  const { TblContainer, TblHead, TblPagination, recordsAfterPagingAndSorting } =
+    useTable(records, headCells, filterFn);
 
   return (
-    <Paper className={classes.pageContent}>
-      <TblContainer>
-        <TblHead />
+    <>
+      <PageHeader
+        title="Customers List"
+        subTitle="TravClan Assignment"
+        icon={<PeopleOutlineTwoToneIcon fontSize="large" />}
+      />
+      <Paper className={classes.pageContent}>
+        <TblContainer>
+          <TblHead />
 
-        <TableBody>
-          {records.map((item) => (
-            <TableRow key={item.id}>
-              <TableCell>{item.firstname}</TableCell>
-              <TableCell>{item.lastname}</TableCell>
-              <TableCell>{item.email}</TableCell>
+          <TableBody>
+            {recordsAfterPagingAndSorting().map((item) => (
+              <TableRow key={item.id}>
+                <TableCell>{item.firstname}</TableCell>
+                <TableCell>{item.lastname}</TableCell>
+                <TableCell>{item.email}</TableCell>
 
-              <TableCell>{item.phone}</TableCell>
-              <TableCell>{item.hasPremium}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </TblContainer>
-      {/* <TblPagination /> */}
-    </Paper>
+                <TableCell>{item.phone}</TableCell>
+                <TableCell>{item.hasPremium}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </TblContainer>
+        <TblPagination />
+      </Paper>
+    </>
   );
 };
 
